@@ -40,6 +40,7 @@ class TimeParser:
 		hour_results = []
 		for s_h in splited_hour[:2]:
 			# h_datetime = datetime.datetime.strptime(s_h, '%H:%M').time()
+			# print s_h
 			h_datetime = datetime.datetime.strptime(s_h, '%H:%M')
 			hour_results.append(h_datetime)
 		return hour_results
@@ -142,7 +143,7 @@ class CalTime:
 		# print day_ammount
 		self.count_overtime(date_data, day_ammount)
 		self.count_midnight(date_data[3])
-		print day_ammount
+		# print day_ammount
 		current_time[0] += day_ammount
 
 	# holiday
@@ -162,7 +163,7 @@ class CalTime:
 				current_time[5] += time_amount
 			day_ammount += time_amount
 		self.count_midnight(date_data[3])
-		print day_ammount
+		# print day_ammount
 		current_time[0] += day_ammount
 
 	def count_overtime(self, date_data, time_amount):
@@ -233,4 +234,4 @@ def main(argv):
 		print i
 
 
-# main(sys.argv)
+main(sys.argv)
