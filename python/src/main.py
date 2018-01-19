@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import wap_cal_time as cal_time
 import sys
 
@@ -16,5 +19,3 @@ def main(argv):
 	calendar_results = c_t.calc_time()
 	for i in c_t.show_results(calendar_results):
 		print i
-
-main(sys.argv)
