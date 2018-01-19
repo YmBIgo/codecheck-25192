@@ -1,6 +1,8 @@
-import json
+import wap_parser as parser
 
 class Calendar:
+	# Calendar data structure
+	# [Year, Month, Day, [Time...], Week, Holiday_Bool]
 	def __init__(self):
 		self.year 		= 2017
 		self.month 		= 1
@@ -15,15 +17,22 @@ class Calendar:
 		for d_data in month:
 			if d_data[2:3] in holiday:
 				d_data[5] = False
-	def create_month(self):
-		month_week = self.month_day_week()
+	def create_month_week(self, input_data):
 		month_result = []
-		for m_count in range(len(month_week)):
-			if month_week[m_count] in [0, 6]:
-				month_result.append([self.year, self.month, m_count+1, [], month_week[m_count], False])
-			elif month_week[m_count] in [1, 2 ,3, 4, 5]:
-				month_result.append([self.year, self.month, m_count+1, [], month_week[m_count], True])
+		# for m_count in range(len(month_week)):
+			# if month_week[m_count] in [0, 6]:
+			# 	month_result.append([self.year, self.month, m_count+1, [], month_week[m_count], False])
+			# elif month_week[m_count] in [1, 2 ,3, 4, 5]:
+			# 	month_result.append([self.year, self.month, m_count+1, [], month_week[m_count], True])
 		# self.special_holiday(month_result)
+		# return month_result
+		for input_day in input_data:
+			self.set_day(input_day[0], input_day[1], input_day[2])
+			month_week = self.month_day_week()
+			if month_week in [0, 6]:
+				month_result.append([self.year, self.month, self.day, input_day[3], month_week, False])
+			elif month_week in [1, 2 ,3, 4, 5]:
+				month_result.append([self.year, self.month, self.day, input_day[3], month_week, True])
 		return month_result
 	def uruu_year_month(self):
 		uruu_month_day = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -43,14 +52,23 @@ class Calendar:
 		if self.month != 1:
 			for m_d1 in month_days[:self.month-1]:
 				amount_day += m_d1
-		month_first_day_week = (amount_day+first_day_week) % 7
-		print month_first_day_week
-		month_day_week = [(m_d2+month_first_day_week-1)%7 for m_d2 in range(1, month_days[self.month-1]+1) ]
+		month_day_week = (amount_day+first_day_week+self.day-1) % 7
+		# month_first_day_week = (amount_day+first_day_week) % 7
+		# month_day_week = [(m_d2+month_first_day_week-1)%7 for m_d2 in range(1, month_days[self.month-1]+1) ]
 		return month_day_week
 	def first_day_week(self):
 		year_week 	= [0, 1, 2, 3, 5, 6, 0, 1, 3, 4, 5, 6, 0, 2] # 2017-2030
 		return year_week[self.year-2017]
 
-c = Calendar()
-c.set_day(2029, 10, 16)
-print c.create_month()
+# c = Calendar()
+# p = parser.TimeParser()
+# time_strs = '''2017/01/30 08:00-12:00 13:00-16:00
+# 2017/01/31 08:00-12:00 13:00-16:00
+# 2017/02/01 08:00-12:00 13:00-16:00
+# 2017/02/02 08:00-12:00 13:00-16:00
+# 2017/02/03 08:00-12:00 13:00-16:00
+# 2017/02/06 13:00-16:00
+# 2017/02/07 08:00-12:00 13:00-16:00 17:00-23:00'''
+# results = p.parse_times(time_strs)
+# # c.set_day(2019, 9, 11)
+# print c.create_month_week(results)

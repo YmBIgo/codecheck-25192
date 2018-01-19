@@ -1,6 +1,8 @@
 import datetime
 
 class TimeParser:
+	# Parser Data Structure
+	# [Year, Month, Day, [[Start, End]...]]
 	def __init__(self):
 		pass
 	def parse_times(self, time_strs):
@@ -32,15 +34,18 @@ class TimeParser:
 		splited_hour = hour_str.split('-')
 		hour_results = []
 		for s_h in splited_hour[:2]:
-			h_datetime = datetime.datetime.strptime(s_h, '%H:%M').time()
+			# h_datetime = datetime.datetime.strptime(s_h, '%H:%M').time()
+			h_datetime = datetime.datetime.strptime(s_h, '%H:%M')
 			hour_results.append(h_datetime)
 		return hour_results
 
-p = TimeParser()
-time_strs = '''2017/02/01 08:00-12:00 13:00-16:00
-2017/02/02 08:00-12:00 13:00-16:00
-2017/02/03 08:00-12:00 13:00-16:00
-2017/02/06 13:00-16:00
-2017/02/07 08:00-12:00 13:00-16:00 17:00-23:00'''
-results = p.parse_times(time_strs)
-print results
+# p = TimeParser()
+# time_strs = '''2017/01/30 08:00-12:00 13:00-16:00
+# 2017/01/31 08:00-12:00 13:00-16:00
+# 2017/02/01 08:00-12:00 13:00-16:00
+# 2017/02/02 08:00-12:00 13:00-16:00
+# 2017/02/03 08:00-12:00 13:00-16:00
+# 2017/02/06 13:00-16:00
+# 2017/02/07 08:00-12:00 13:00-16:00 17:00-23:00'''
+# results = p.parse_times(time_strs)
+# print results
