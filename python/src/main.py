@@ -235,4 +235,3 @@ def main(argv):
 	for i in c_t.show_results(calendar_results):
 		print i
 
-main(sys.argv)
