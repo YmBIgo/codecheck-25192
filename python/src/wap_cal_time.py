@@ -111,11 +111,13 @@ class CalTime:
 	def show_results(self, calendar_results):
 		ini_t = datetime.timedelta()
 		results = [ini_t, ini_t, ini_t, ini_t, ini_t]
+		results_str = []
 		for calendar_data in calendar_results:
 			for i in range(5):
 				results[i] += calendar_data[i+1]
 		for r in results:
-			print r.seconds/3600
+			results_str.append(str(r.seconds/3600))
+		return results_str
 
 # c_t = CalTime()
 # time_strs = '''2017/01/30 08:00-12:00 13:00-16:00
