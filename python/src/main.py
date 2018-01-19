@@ -142,6 +142,7 @@ class CalTime:
 		# print day_ammount
 		self.count_overtime(date_data, day_ammount)
 		self.count_midnight(date_data[3])
+		print day_ammount
 		current_time[0] += day_ammount
 
 	# holiday
@@ -150,16 +151,19 @@ class CalTime:
 		ini_t = datetime.timedelta()
 		if date_data[4] == 1:
 			self.week_time.append([ini_t, ini_t, ini_t, ini_t, ini_t, ini_t])
-		time_amount = datetime.timedelta()
+		day_ammount = datetime.timedelta()
 		current_time = self.week_time[-1]
 		for c_day_time in date_data[3]:
+			time_amount = datetime.timedelta()
 			time_amount += c_day_time[1] - c_day_time[0]
 			if date_data[4] == 6:
 				current_time[4] += time_amount
 			elif date_data[4] == 0:
 				current_time[5] += time_amount
-			current_time[0] += time_amount
+			day_ammount += time_amount
 		self.count_midnight(date_data[3])
+		print day_ammount
+		current_time[0] += day_ammount
 
 	def count_overtime(self, date_data, time_amount):
 		current_time = self.week_time[-1]
@@ -223,17 +227,10 @@ class CalTime:
 
 def main(argv):
 	c_t = CalTime()
-	# time_strs = '''2017/01/30 08:00-12:00 13:00-16:00
-	# 2017/01/31 00:00-04:00 08:00-12:00 13:00-16:00
-	# 2017/02/01 08:00-12:00 13:00-16:00
-	# 2017/02/02 08:00-12:00 13:00-16:00
-	# 2017/02/03 08:00-12:00 13:00-18:00 20:00-23:00
-	# 2017/02/06 13:00-16:00
-	# 2017/02/07 08:00-12:00 13:00-16:00 17:00-23:00'''
 	c_t.input_calendar(argv[1])
 	calendar_results = c_t.calc_time()
-	# print c_t.show_results(calendar_results)
 	for i in c_t.show_results(calendar_results):
 		print i
+
 
 # main(sys.argv)
