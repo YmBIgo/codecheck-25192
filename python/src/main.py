@@ -13,6 +13,7 @@ def main(argv):
 	# 2017/02/06 13:00-16:00
 	# 2017/02/07 08:00-12:00 13:00-16:00 17:00-23:00'''
 	c_t.input_calendar(argv[1])
+	print argv[1]
 	calendar_results = c_t.calc_time()
 	c_t.show_results(calendar_results)
 
