@@ -115,9 +115,6 @@ class CalTime:
 		for calendar_data in calendar_results:
 			for i in range(5):
 				results[i] += calendar_data[i+1]
-		for r in results:
-			results_str.append(str(r.seconds/3600))
-		return results_str
 
 # c_t = CalTime()
 # time_strs = '''2017/01/30 08:00-12:00 13:00-16:00
