@@ -7,7 +7,8 @@ class CalTime:
 	def __init__(self):
 		self.calendar = calendar.Calendar()
 		self.parser   = parser.TimeParser()
-		self.week_time = []
+		ini_t = datetime.timedelta()
+		self.week_time = [[ini_t, ini_t, ini_t, ini_t, ini_t, ini_t]]
 	def input_calendar(self, input):
 		results = self.parser.parse_times(input)
 		calendar_results = self.calendar.create_month_week(results)
@@ -111,8 +112,8 @@ class CalTime:
 		ini_t = datetime.timedelta()
 		results = [ini_t, ini_t, ini_t, ini_t, ini_t]
 		for calendar_data in calendar_results:
-			for i in range(1, 5):
-				results[i] += calendar_data[i]
+			for i in range(5):
+				results[i] += calendar_data[i+1]
 		for r in results:
 			print r.seconds/3600
 
