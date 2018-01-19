@@ -7,7 +7,7 @@ class TimeParser:
 		pass
 	def parse_times(self, time_strs):
 		parsed_results = []
-		for t_str in time_strs.split('\n'):
+		for t_str in time_strs.split('\n')[1:]:
 			parsed_results.append(self.parse_time(t_str))
 		return parsed_results
 	def parse_time(self, time_str):
